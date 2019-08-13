@@ -1,4 +1,4 @@
-kubectl delete namespaces --all
+REM kubectl delete namespaces --all
 kubectl delete deployments --all
 kubectl delete jobs --all
 kubectl delete services --all
