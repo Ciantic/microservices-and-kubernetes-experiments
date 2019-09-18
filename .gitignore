@@ -1,1 +1,4 @@
-04-istio/istio
+03-istio/istio
+kind
+kubectl
+helm
