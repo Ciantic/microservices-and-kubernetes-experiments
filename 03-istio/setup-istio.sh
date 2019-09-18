@@ -26,7 +26,9 @@ sleep 3s # This really is installation step!
 kubectl apply -f istio/install/kubernetes/istio-demo.yaml
 kubectl patch svc istio-ingressgateway -n istio-system --type=json --patch '[{"op": "replace", "path": "/spec/type", "value": "NodePort"}]'
 
-# # helm repo
+# Using Helm3 does not work, it is deprecated by istio team:
+# https://github.com/istio/istio/issues/17167
+# 
 # helm repo add istio.io https://storage.googleapis.com/istio-release/releases/1.3.0/charts/
 # helm repo update
 
