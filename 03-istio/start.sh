@@ -6,11 +6,11 @@ set -e
 kind create cluster --config kube-config.yaml
 export KUBECONFIG="$(kind get kubeconfig-path --name="kind")"
 
-setup-istio.sh
+./setup-istio.sh
 
-sleep 10s
+sleep 20s
 
-setup-bookinfo.sh
+./setup-bookinfo.sh
 
 # Teardown
 read -p "Press [Enter] to teardown..."

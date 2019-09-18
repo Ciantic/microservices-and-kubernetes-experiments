@@ -3,7 +3,8 @@ set -e
 
 kubectl apply -f istio/samples/bookinfo/platform/kube/bookinfo.yaml
 
-sleep 20s
+echo "Waiting 120 seconds for the book info to come online..."
+sleep 120s
 
 # Test the intrapod connections
 RATINGS_POD_NAME="$(kubectl get pod -l app=ratings -o jsonpath='{.items[0].metadata.name}')"
