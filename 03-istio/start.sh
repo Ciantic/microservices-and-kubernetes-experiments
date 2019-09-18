@@ -8,6 +8,7 @@ export KUBECONFIG="$(kind get kubeconfig-path --name="kind")"
 
 ./setup-istio.sh
 
+echo "Waiting 20 seconds for istio setup to become operational..."
 sleep 20s
 
 ./setup-bookinfo.sh
