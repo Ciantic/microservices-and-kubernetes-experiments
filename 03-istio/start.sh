@@ -13,6 +13,11 @@ sleep 20s
 
 ./setup-bookinfo.sh
 
+echo "Waiting 300 seconds for the book info to come online..."
+sleep 300s
+
+./test-bookinfo.sh
+
 # Teardown
 read -p "Press [Enter] to teardown..."
 export KUBECONFIG=""

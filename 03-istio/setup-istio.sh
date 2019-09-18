@@ -14,18 +14,35 @@ if [[ ! -d "istio" ]]; then
     cd ..
 fi
 
-# Setup default namespace with automatic istio injection
+kubectl create namespace istio-system
 kubectl label namespace default istio-injection=enabled
 
-# CRD's
+# Install
 for i in istio/install/kubernetes/helm/istio-init/files/crd*yaml; 
 do 
     kubectl apply -f $i; 
 done
-
 sleep 3s # This really is installation step!
-
 kubectl apply -f istio/install/kubernetes/istio-demo.yaml
 kubectl patch svc istio-ingressgateway -n istio-system --type=json --patch '[{"op": "replace", "path": "/spec/type", "value": "NodePort"}]'
+
+# # helm repo
+# helm repo add istio.io https://storage.googleapis.com/istio-release/releases/1.3.0/charts/
+# helm repo update
+
+# # Install crds
+# helm install istio-init istio.io/istio-init --namespace istio-system
+
+# # See https://github.com/helm/helm/issues/2994 for the deleting cache
+# rm -rf ~/.kube/cache/discovery/
+
+# sleep 3s # This really is installation step!
+
+# # Install istio
+# helm install istio istio.io/istio \
+#     --namespace istio-system \
+#     --values istio/install/kubernetes/helm/istio/values-istio-demo.yaml \
+#     --set gateways.istio-ingressgateway.type=NodePort
+
 
 kubectl get all -n istio-system

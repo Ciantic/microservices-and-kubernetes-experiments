@@ -14,7 +14,7 @@ helm install my-ingress stable/nginx-ingress --set controller.service.type=NodeP
 
 kubectl create -f service.yaml
 
-# Wait for nginx to come online (120 seconds might not be enough)
+echo "Waiting 120 seconds for nginx to come online..."
 sleep 120s
 curl http://localhost:30080/test
 
