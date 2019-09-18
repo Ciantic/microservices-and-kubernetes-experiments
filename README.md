@@ -8,7 +8,7 @@ Start each example with `start.sh`, each example is stopped before teardown for 
 
 ## Dependencies
 
-- [`Kubectl`] for kubernetes 
+- [`Kubectl`](https://kubernetes.io/docs/tasks/tools/install-kubectl/) for kubernetes 
 - [`kind`](https://github.com/kubernetes-sigs/kind) for testing clusters 
 - [`helm` (version 3)](https://github.com/helm/helm)
 
