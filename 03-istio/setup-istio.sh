@@ -23,8 +23,8 @@ do
     kubectl apply -f $i; 
 done
 sleep 3s # This really is installation step!
-kubectl apply -f istio/install/kubernetes/istio-demo.yaml
-kubectl patch svc istio-ingressgateway -n istio-system --type=json --patch '[{"op": "replace", "path": "/spec/type", "value": "NodePort"}]'
+cat istio/install/kubernetes/istio-demo.yaml | sed 's#LoadBalancer#NodePort#' | kubectl apply -f -
+# kubectl patch svc istio-ingressgateway -n istio-system --type=json --patch '[{"op": "replace", "path": "/spec/type", "value": "NodePort"}]'
 
 # Using Helm3 does not work, it is deprecated by istio team:
 # https://github.com/istio/istio/issues/17167
