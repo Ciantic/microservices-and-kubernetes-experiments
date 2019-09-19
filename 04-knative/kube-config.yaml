@@ -1,0 +1,9 @@
+kind: Cluster
+apiVersion: kind.sigs.k8s.io/v1alpha3
+nodes:
+- role: control-plane
+  extraPortMappings:
+  - containerPort: 31380
+    hostPort: 31380
+  - containerPort: 31390
+    hostPort: 31390

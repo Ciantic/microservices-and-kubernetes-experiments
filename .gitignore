@@ -1,4 +1,5 @@
 03-istio/istio
+04-knative/istio
 kind
 kubectl
 helm

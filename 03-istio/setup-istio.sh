@@ -24,27 +24,12 @@ do
 done
 sleep 3s # This really is installation step!
 cat istio/install/kubernetes/istio-demo.yaml | sed 's#LoadBalancer#NodePort#' | kubectl apply -f -
+
 # kubectl patch svc istio-ingressgateway -n istio-system --type=json --patch '[{"op": "replace", "path": "/spec/type", "value": "NodePort"}]'
 
 # Using Helm3 does not work, it is deprecated by istio team:
 # https://github.com/istio/istio/issues/17167
-# 
-# helm repo add istio.io https://storage.googleapis.com/istio-release/releases/1.3.0/charts/
-# helm repo update
-
-# # Install crds
-# helm install istio-init istio.io/istio-init --namespace istio-system
-
-# # See https://github.com/helm/helm/issues/2994 for the deleting cache
-# rm -rf ~/.kube/cache/discovery/
-
-# sleep 3s # This really is installation step!
-
-# # Install istio
-# helm install istio istio.io/istio \
-#     --namespace istio-system \
-#     --values istio/install/kubernetes/helm/istio/values-istio-demo.yaml \
-#     --set gateways.istio-ingressgateway.type=NodePort
-
 
 kubectl get all -n istio-system
+
+echo "Istio has been set up."
