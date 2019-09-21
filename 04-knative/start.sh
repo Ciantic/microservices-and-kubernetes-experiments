@@ -2,6 +2,10 @@
 
 set -e
 
+# This has to be the most awful way to install any software, usually it doesn't
+# work, if it does it takes literally 15 minutes or more for the pods to settle.
+# And all for hello world?
+
 # Setup
 kind create cluster --config kube-config.yaml
 export KUBECONFIG="$(kind get kubeconfig-path --name="kind")"
@@ -13,8 +17,8 @@ sleep 120s
 
 ./setup-knative.sh
 
-echo "Waiting 240 seconds for knative setup to become operational..."
-sleep 240s
+echo "Waiting 260 seconds for knative setup to become operational..."
+sleep 260s
 
 kubectl get pods --namespace knative-serving
 kubectl get pods --namespace knative-eventing
