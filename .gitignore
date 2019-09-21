@@ -2,4 +2,4 @@
 04-knative/istio
 kind
 kubectl
-helm
+helm*

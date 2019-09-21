@@ -6,12 +6,22 @@ set -e
 kind create cluster --config kube-config.yaml
 export KUBECONFIG="$(kind get kubeconfig-path --name="kind")"
 
-../03-istio/setup-istio.sh
+./setup-istio.sh
 
 echo "Waiting 20 seconds for istio setup to become operational..."
 sleep 20s
 
 ./setup-knative.sh
+
+echo "Waiting 20 seconds for knative setup to become operational..."
+sleep 20s
+
+
+kubectl get pods --namespace knative-serving
+kubectl get pods --namespace knative-eventing
+kubectl get pods --namespace knative-monitoring
+
+./setup-helloworld.sh
 
 # Teardown
 read -p "Press [Enter] to teardown..."

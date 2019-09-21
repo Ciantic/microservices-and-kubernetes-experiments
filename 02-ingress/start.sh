@@ -10,7 +10,7 @@ helm repo add stable https://kubernetes-charts.storage.googleapis.com
 helm repo update
 
 # https://github.com/helm/charts/tree/master/stable/nginx-ingress
-helm install my-ingress stable/nginx-ingress --set controller.service.type=NodePort --set controller.service.nodePorts.http=30080  --set controller.service.nodePorts.https=30443
+helm3 install my-ingress stable/nginx-ingress --set controller.service.type=NodePort --set controller.service.nodePorts.http=30080  --set controller.service.nodePorts.https=30443
 
 kubectl create -f service.yaml
 

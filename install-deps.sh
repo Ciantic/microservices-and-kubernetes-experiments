@@ -26,11 +26,22 @@ if [[ ! $(type -P "kind") ]] && [[ ! -f "kind" ]]; then
     sudo cp kind /bin/kind
 fi
 
-# Install helm if necessary
-if [[ ! $(type -P "helm") ]] && [[ ! -f "helm" ]]; then
-    curl https://get.helm.sh/helm-v3.0.0-beta.3-linux-amd64.tar.gz -L -o helm.tar.gz
-    tar -xvzf helm.tar.gz linux-amd64/helm --strip 1
-    rm helm.tar.gz
-    chmod +x helm
-    sudo cp helm /bin/helm
+# Install helm3 if necessary
+if [[ ! $(type -P "helm3") ]] && [[ ! -f "helm3" ]]; then
+    curl https://get.helm.sh/helm-v3.0.0-beta.3-linux-amd64.tar.gz -L -o helm3.tar.gz
+    tar -xvzf helm3.tar.gz linux-amd64/helm --strip 1
+    rm helm3.tar.gz
+    mv helm helm3
+    chmod +x helm3
+    sudo cp helm3 /bin/helm3
+fi
+
+# Install helm2 if necessary
+if [[ ! $(type -P "helm2") ]] && [[ ! -f "helm2" ]]; then
+    curl https://get.helm.sh/helm-v2.14.3-linux-amd64.tar.gz -L -o helm2.tar.gz
+    tar -xvzf helm2.tar.gz linux-amd64/helm --strip 1
+    rm helm2.tar.gz
+    mv helm helm2
+    chmod +x helm2
+    sudo cp helm2 /bin/helm2
 fi
