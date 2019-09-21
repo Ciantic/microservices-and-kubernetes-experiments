@@ -8,14 +8,13 @@ export KUBECONFIG="$(kind get kubeconfig-path --name="kind")"
 
 ./setup-istio.sh
 
-echo "Waiting 20 seconds for istio setup to become operational..."
-sleep 20s
+echo "Waiting 120 seconds for istio setup to become operational..."
+sleep 120s
 
 ./setup-knative.sh
 
-echo "Waiting 20 seconds for knative setup to become operational..."
-sleep 20s
-
+echo "Waiting 240 seconds for knative setup to become operational..."
+sleep 240s
 
 kubectl get pods --namespace knative-serving
 kubectl get pods --namespace knative-eventing
